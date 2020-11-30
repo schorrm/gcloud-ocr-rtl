@@ -45,8 +45,9 @@ def df2txt(xf, columns=2, show_col=True):
                 continue
             collinear = col.loc[(col.ymin < qq.y) & (col.ymax > qq.y)].copy()
             collinear.sort_values('x', ascending=False, inplace=True)
-            if collinear.visited.any():
-                continue
+            # if collinear.visited.any():
+            #     continue
+            collinear = collinear[(collinear.visited == False)]
             col.loc[col.index.isin(collinear.index),'visited'] = True
             tx += ' '.join(collinear.t) + '\n'
     return tx
