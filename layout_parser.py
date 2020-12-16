@@ -167,6 +167,8 @@ if __name__ == "__main__":
     parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 
     args = parser.parse_args()
+
+    os.makedirs(args.output_directory, exist_ok=True)
     
     files_to_text(args.files, args.output_directory, args.columns)
 
